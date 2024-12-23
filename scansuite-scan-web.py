@@ -24,8 +24,8 @@ server_url = args.server_url or get_user_input("Enter server URL: ")
 username = args.username or get_user_input("Enter username: ")
 password = args.password or get_user_input("Enter password: ")
 websites = args.websites or get_user_input("Enter websites to scan: ")
-auth_cookie = args.auth_cookie or ""
-auth_header = args.auth_header or ""
+auth_cookie = args.auth_cookie
+auth_header = args.auth_header
 product_name = args.product_name or datetime.now().strftime("%Y-%m-%d %H-%M-%S")
 
 # All available scanners:

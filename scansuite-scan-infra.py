@@ -15,8 +15,15 @@ parser.add_argument("-p", "--password", type=str, help="Password for authenticat
 parser.add_argument("-t", "--targets", type=str, help="Targets to scan")
 parser.add_argument("-g", "--ping", type=str, default="No", help="Ping options (default: No)")
 parser.add_argument("-r", "--ports", type=str, default="All TCP", help="Ports to scan (default: All TCP)")
-parser.add_argument("-y", "--scan_type", type=str, help="Type of scan to perform")
+parser.add_argument("-y", "--scan_type", type=str, default="vulnerability_scan", help="Type of scan to perform")
 parser.add_argument("-n", "--product_name", type=str, help="Product name (optional, defaults to current date and time)")
+
+# Possible scan_type values (specify via command line parameter):
+# vulnerability_scan
+# nmap_scan
+# nmap_linux_patching
+# subdomain_enum
+# docker_image_scan
 
 args = parser.parse_args()
 
@@ -31,6 +38,15 @@ scan_type = args.scan_type or get_user_input("Enter scan type: ")
 product_name = args.product_name or datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
 
 # Scanners configuration
+
+# All available scanners for vulnerability_scan type:
+# vuln_scanners = {
+#     "openvas":"on",
+#     "nessus":"on",
+#     "nuclei_local":"on",
+#     "nuclei_custom":"on"
+#     }
+
 vuln_scanners = {
     "nuclei_custom": "on"
 }
