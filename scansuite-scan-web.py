@@ -46,7 +46,15 @@ product_name = args.product_name or datetime.now().strftime("%Y-%m-%d %H-%M-%S")
 
 # Chosen scanners:
 web_scanners = {
-    "zap_base": "on"
+    "zap_base": "on",
+    "arachni": "on",
+    "nuclei": "on",
+    "sslyze": "on",
+    "nuclei_local": "on",
+    "nuclei_custom": "on",
+    "dastardly": "on",
+    "gobuster": "on",
+    "nessus_web": "on"
 }
 
 # Login
@@ -62,20 +70,21 @@ if not engid:
 
 # Start dynamic web scan
 scanid = scansuite_cli.dynamic_scan(
-    server_url, cookie, websites, engid, auth_cookie, auth_header, web_scanners
+    server_url, cookie, websites, engid.split(",")[1], auth_cookie, auth_header, web_scanners
 )
 if not scanid:
     sys.exit("Failed to initiate dynamic web scan. Exiting.")
 
-# Example of the new scan status check every 30 seconds until Finished
-while True:
-    scan_status = scansuite_cli.get_scan_status(server_url, cookie, scanid)
-    if scan_status:
-        print(f"Scan {scanid} is with status {scan_status}")
-        if scan_status == "Finished":
-            break
+# Example of the scan status check every 30 seconds until Finished:
 
-        print("Will check again in 30 seconds")
-        time.sleep(30)
-    else:
-        break
+# while True:
+#     scan_status = scansuite_cli.get_scan_status(server_url, cookie, scanid)
+#     if scan_status:
+#         print(f"Scan {scanid} is with status {scan_status}")
+#         if scan_status == "Finished":
+#             break
+
+#         print("Will check again in 30 seconds")
+#         time.sleep(30)
+#     else:
+#         break

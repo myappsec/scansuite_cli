@@ -27,6 +27,7 @@ file_path = args.file_path or get_user_input("Enter file path: ")
 scanners_list = {
     "semgrep_local": "on",
     "semgrep_gitlab": "on",
+    "codeql": "on",
     "gitleaks": "on",
     "trufflehog": "on",
     "parker": "on",
@@ -49,7 +50,7 @@ if not engid:
     sys.exit("Failed to create product. Exiting.")
 
 # Initiate new static scan
-scanid = scansuite_cli.static_scan_file(server_url, cookie, lang, engid, file_path, scanners_list)
+scanid = scansuite_cli.static_scan_file(server_url, cookie, lang, engid.split(",")[1], file_path, scanners_list)
 if not scanid:
     sys.exit("Failed to initiate static scan. Exiting.")
 

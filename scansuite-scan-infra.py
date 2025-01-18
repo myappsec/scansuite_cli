@@ -48,7 +48,10 @@ product_name = args.product_name or datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
 #     }
 
 vuln_scanners = {
-    "nuclei_custom": "on"
+    "openvas":"on",
+    "nessus":"on",
+    "nuclei_local":"on",
+    "nuclei_custom":"on"
 }
 
 # Login
@@ -64,7 +67,7 @@ if not engid:
 
 # Start infrastructure scan
 scanid = scansuite_cli.infra_scan(
-    server_url, cookie, targets, engid, ping, ports, scan_type, vuln_scanners
+    server_url, cookie, targets, engid.split(",")[1], ping, ports, scan_type, vuln_scanners
 )
 if not scanid:
     sys.exit("Failed to initiate infrastructure scan. Exiting.")

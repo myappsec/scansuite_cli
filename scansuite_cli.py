@@ -65,7 +65,7 @@ def login(url, username, password):
         print(f"Unexpected response status code: {response.status_code}")
         print(response.headers)
 
-    return response
+    return False
 
 def create_product(url, session_cookie, product_name):
     product_path = "/product"

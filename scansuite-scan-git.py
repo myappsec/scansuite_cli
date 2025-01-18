@@ -28,6 +28,7 @@ giturl = args.giturl or get_user_input("Enter Git repository URL: ")
 scanners_list = {
     "semgrep_local": "on",
     "semgrep_gitlab": "on",
+    "codeql": "on",
     "gitleaks": "on",
     "trufflehog": "on",
     "parker": "on",
@@ -50,7 +51,7 @@ if not engid:
     sys.exit("Failed to create product. Exiting.")
 
 # Initiate new static scan
-scanid = scansuite_cli.static_scan_url(server_url, cookie, giturl, lang, engid, scanners_list)
+scanid = scansuite_cli.static_scan_url(server_url, cookie, giturl, lang, engid.split(",")[1], scanners_list)
 if not scanid:
     sys.exit("Failed to initiate static scan. Exiting.")
 
