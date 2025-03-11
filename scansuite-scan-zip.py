@@ -1,6 +1,5 @@
 import scansuite_cli
 import sys
-import time
 import argparse
 
 def get_user_input(prompt):

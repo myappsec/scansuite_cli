@@ -1,6 +1,7 @@
 import requests
-import os
 import re
+
+requests.packages.urllib3.disable_warnings(requests.packages.urllib3.exceptions.InsecureRequestWarning)
 
 def fetch_session_and_csrf(url):
     login_path = "/log_in"
