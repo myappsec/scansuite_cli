@@ -48,6 +48,7 @@ Script serves specific usecase when local BitBucket server is in use, containing
 * Submit it to the script along with the comma separated list of project names and, optionally, specific repositories.
 
 The script will download required repositories from the given project and make and archive from them, suitable to upload to ScanSuite for further static code analysis.
+
 BitBucket token can be provided either inline with `--token` parameter or entered via promped field, same as other mandatory fields.
 
 This will clone and ZIP all repos from given projects:
